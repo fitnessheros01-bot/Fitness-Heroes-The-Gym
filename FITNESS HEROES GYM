@@ -1,0 +1,137 @@
+fitness-heroes/
+│─ pages/
+│  ├─ index.js        ← Main page (hero, facilities, trainers, membership)
+│  └─ contact.js      ← Contact page with WhatsApp, Instagram, Email, Phone
+│─ components/
+│  └─ ui/
+│     ├─ card.js
+│     └─ button.js
+│─ public/
+│  ├─ hero.jpg        ← Placeholder hero image
+│  ├─ trainer1.jpg
+│  ├─ trainer2.jpg
+│  └─ trainer3.jpg
+│─ package.json
+
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Dumbbell, Users, Activity, Flame, HeartPulse, Music, Wind, Sword } from "lucide-react";
+
+export default function FitnessHeroes() {
+  return (
+    <div className="min-h-screen bg-gray-950 text-white font-sans relative">
+      {/* Hero Section */}
+      <section className="h-screen flex flex-col justify-center items-center text-center px-6 bg-gradient-to-b from-black to-gray-900">
+        <img src="/hero.jpg" alt="Hero Image" className="rounded-xl mb-6 w-full max-w-3xl" />
+        <motion.h1 initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="text-5xl md:text-7xl font-extrabold mb-4 text-red-500">
+          FITNESS HEROES
+        </motion.h1>
+        <p className="text-xl md:text-2xl mb-6 text-gray-300">THE REAL GYM – Where Strength Meets Discipline</p>
+        <p className="text-md md:text-lg mb-6 text-gray-400">Open since <span className="text-red-500 font-semibold">3rd November 2022</span></p>
+        <Button size="lg" className="bg-red-600 hover:bg-red-700 text-lg rounded-2xl px-8">Join Now</Button>
+      </section>
+
+      {/* Facilities Section */}
+      <section className="py-20 px-8 md:px-20 text-center">
+        <h2 className="text-4xl font-bold mb-12">Our Facilities</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { name: "Weight Training", icon: Dumbbell },
+            { name: "Massage Room", icon: Activity },
+            { name: "Kick Boxing", icon: Flame },
+            { name: "Cardio", icon: HeartPulse },
+            { name: "Zumba", icon: Music },
+            { name: "Steam Room", icon: Wind },
+            { name: "MMA", icon: Sword },
+          ].map((facility, index) => (
+            <Card key={index} className="bg-gray-800 rounded-2xl shadow-lg">
+              <CardContent className="p-6 flex flex-col items-center">
+                <facility.icon className="h-12 w-12 text-red-500 mb-4" />
+                <h3 className="text-xl font-semibold">{facility.name}</h3>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Trainers Section */}
+      <section className="py-20 px-8 md:px-20 text-center">
+        <h2 className="text-4xl font-bold mb-12">Meet Our Trainers</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { name: "Alex – Strength Coach", img: "/trainer1.jpg" },
+            { name: "Maya – Cardio Expert", img: "/trainer2.jpg" },
+            { name: "John – Personal Trainer", img: "/trainer3.jpg" },
+          ].map((trainer, index) => (
+            <Card key={index} className="bg-gray-800 rounded-2xl shadow-lg">
+              <CardContent className="p-6 flex flex-col items-center">
+                <img src={trainer.img} alt={trainer.name} className="rounded-full w-40 h-40 mb-4" />
+                <h3 className="text-xl font-semibold">{trainer.name}</h3>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Membership Section */}
+      <section className="py-20 px-8 md:px-20 bg-gray-900 text-center">
+        <h2 className="text-4xl font-bold mb-6">Membership Plans</h2>
+        <p className="text-gray-400 mb-12">(Prices after 50% discount)</p>
+        <div className="grid md:grid-cols-4 gap-8">
+          {[
+            { plan: "1 Month", price: "₹3,000" },
+            { plan: "3 Months", price: "₹6,000" },
+            { plan: "6 Months", price: "₹8,500" },
+            { plan: "12 Months", price: "₹12,500" },
+          ].map((item, index) => (
+            <Card key={index} className="bg-gray-800 rounded-2xl shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-semibold mb-2">{item.plan}</h3>
+                <p className="text-red-500 text-xl font-bold mb-4">{item.price}</p>
+                <Button className="bg-red-600 hover:bg-red-700 rounded-2xl px-6">Get Started</Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Floating Contact Button */}
+      <a href="/contact" className="fixed bottom-6 right-6 bg-red-600 hover:bg-red-700 p-4 rounded-full shadow-lg z-50">
+        Contact Us
+      </a>
+
+      {/* Footer */}
+      <footer className="py-6 bg-black text-center text-gray-500">
+        © {new Date().getFullYear()} FITNESS HEROES – THE REAL GYM. All rights reserved.
+      </footer>
+    </div>
+  );
+}
+import { Phone, Mail, Instagram, MessageCircle } from "lucide-react";
+
+export default function ContactPage() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-950 text-white font-sans px-6">
+      <h1 className="text-5xl font-bold text-red-500 mb-8">Contact Fitness Heroes</h1>
+      
+      <div className="flex flex-col gap-6 text-center">
+        <a href="https://wa.me/919867719359" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-green-500 hover:bg-green-600 p-4 rounded-xl text-lg font-semibold justify-center">
+          <MessageCircle className="w-6 h-6" /> Chat on WhatsApp
+        </a>
+
+        <a href="https://www.instagram.com/fitnessheroestherealgym" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-pink-500 hover:bg-pink-600 p-4 rounded-xl text-lg font-semibold justify-center">
+          <Instagram className="w-6 h-6" /> Follow on Instagram
+        </a>
+
+        <a href="mailto:fitnessheroes01@gmail.com" className="flex items-center gap-3 bg-blue-600 hover:bg-blue-700 p-4 rounded-xl text-lg font-semibold justify-center">
+          <Mail className="w-6 h-6" /> Email Us
+        </a>
+
+        <a href="tel:+919867719359" className="flex items-center gap-3 bg-gray-700 hover:bg-gray-800 p-4 rounded-xl text-lg font-semibold justify-center">
+          <Phone className="w-6 h-6" /> Call Us: 9867719359
+        </a>
+      </div>
+    </div>
+  );
+}
